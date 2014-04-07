@@ -1,0 +1,12 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "description": "Example application for using the packages-pagelet to render an npm package page.",
+  "main": "index.js",
+  "dependencies": {
+    "bigpipe": "*",
+    "ejs": "*",
+    "githulk": "*",
+    "bigpipe-watch": "~0.1.1"
+  }
+}

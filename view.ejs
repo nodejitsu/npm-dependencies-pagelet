@@ -1,0 +1,70 @@
+<article class="dependencies">
+  <header class="row package">
+    <h1 class="sixcol">
+      <%= package.name %>
+      <small><%= package.version %></small>
+    </h1>
+
+    <div class="sixcol status last">
+      dependencies up to date
+    </div>
+    <p class="twelvecol">
+      <%= package.description %>
+    </p>
+  </header>
+
+  <ul class="row summary">
+    <li>
+      <%= Object.keys(package.dependencies || {}).length %> Dependencies
+    </li>
+    <li>
+      <%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %> Inherited dependencies
+    </li>
+    <li>
+      3 up to date
+    </li>
+    <li>
+      10 out of date
+    </li>
+  </ul>
+
+  <table class="details">
+    <thead>
+      <tr>
+        <th>Dependency</th>
+        <th>License</th>
+        <th>Required</th>
+        <th>Latest</th>
+        <th>Installed</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% shrinkwrap.forEach(function (module) { %>
+    <tr>
+      <td><%= module.name %></td>
+      <td><%= module.licenses.join(',') %></td>
+      <td><%= module.range %></td>
+      <td><%= module.latest %></td>
+      <td><%= module.version %></td>
+      <td><%= module.status %></td>
+    </tr>
+    <% }); %>
+    </tbody>
+  </table>
+
+  <ul class="row summary">
+    <li>
+      <%= Object.keys(package.dependencies || {}).length %> Dependencies
+    </li>
+    <li>
+      <%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %> Inherited dependencies
+    </li>
+    <li>
+      3 up to date
+    </li>
+    <li>
+      10 out of date
+    </li>
+  </ul>
+</article>
