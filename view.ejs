@@ -42,8 +42,23 @@
     <tbody>
     <% shrinkwrap.forEach(function (module) { %>
     <tr>
-      <td><%= module.name %></td>
-      <td><%= module.licenses.join(',') %></td>
+      <td>
+        <a href="/packages/<%= module.name %>"><%= module.name %></a>
+      </td>
+      <td>
+      <% if (module.licenses) { %>
+        <%-
+          !(module.licenses || []).length ? 'Unknown' : module.licenses.map(function (license) {
+            var info = licenses(license);
+            return info && info.url
+              ? '<a href="'+ info.url +'" title="'+ info.full +'" target="_blank">'+ license +'</a>'
+              : license;
+          }).join(', ')
+        %>
+      <% } else { %>
+        Unknown
+      <% } %>
+      </td>
       <td><%= module.range %></td>
       <td><%= module.latest %></td>
       <td><%= module.version %></td>
