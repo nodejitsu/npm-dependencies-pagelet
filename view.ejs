@@ -59,10 +59,16 @@
         Unknown
       <% } %>
       </td>
-      <td><%= module.range %></td>
+      <td><%= module.required %></td>
       <td><%= module.latest %></td>
       <td><%= module.version %></td>
-      <td><%= module.status %></td>
+      <td>
+        <% if (module.uptodate) { %>
+        Up to date
+        <% } else { %>
+        Dependency is out of date
+        <% } %>
+      </td>
     </tr>
     <% }); %>
     </tbody>
