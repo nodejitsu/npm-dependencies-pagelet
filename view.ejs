@@ -1,8 +1,7 @@
 <article class="dependencies">
   <header class="row package">
     <h1 class="sixcol">
-      <%= package.name %>
-      <small><%= package.version %></small>
+      <%= package.name %> / <%= package.version %>
     </h1>
 
     <div class="sixcol status last">
@@ -18,79 +17,81 @@
   </header>
 
   <ul class="row summary">
-    <li>
+    <li class="threecol dependencies">
       <%= Object.keys(package.dependencies || {}).length %> Dependencies
     </li>
-    <li>
+    <li class="threecol inherited">
       <%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %> Inherited dependencies
     </li>
-    <li>
+    <li class="threecol uptodate">
       <%= stats.uptodate %> up to date
     </li>
-    <li>
+    <li class="threecol outofdate last">
       <%= stats.outofdate %> out of date
     </li>
   </ul>
 
-  <table class="details">
-    <thead>
+  <section class="row">
+    <table class="details">
+      <thead>
+        <tr>
+          <th>Dependency</th>
+          <th>License</th>
+          <th>Required</th>
+          <th>Latest</th>
+          <th>Installed</th>
+          <th>status</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% shrinkwrap.forEach(function (module) { %>
       <tr>
-        <th>Dependency</th>
-        <th>License</th>
-        <th>Required</th>
-        <th>Latest</th>
-        <th>Installed</th>
-        <th>status</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% shrinkwrap.forEach(function (module) { %>
-    <tr>
-      <td>
-        <a href="/packages/<%= module.name %>"><%= module.name %></a>
-      </td>
-      <td>
-      <% if (module.licenses) { %>
-        <%-
-          !(module.licenses || []).length ? 'Unknown' : module.licenses.map(function (license) {
-            var info = licenses(license);
-            return info && info.url
-              ? '<a href="'+ info.url +'" title="'+ info.full +'" target="_blank">'+ license +'</a>'
-              : license;
-          }).join(', ')
-        %>
-      <% } else { %>
-        Unknown
-      <% } %>
-      </td>
-      <td><%= module.required %></td>
-      <td><%= module.latest %></td>
-      <td><%= module.version %></td>
-      <td>
-        <% if (!module.uptodate) { %>
-        Dependency is out of date
-        <% } else if (!module.pinned) { %>
-        Greedy version range
+        <td>
+          <a href="/package/<%= module.name %>"><%= module.name %></a>
+        </td>
+        <td>
+        <% if (module.licenses) { %>
+          <%-
+            !(module.licenses || []).length ? 'Unknown' : module.licenses.map(function (license) {
+              var info = licenses(license);
+              return info && info.url
+                ? '<a href="'+ info.url +'" title="'+ info.full +'" target="_blank">'+ license +'</a>'
+                : license;
+            }).join(', ')
+          %>
         <% } else { %>
-        Up to date
+          Unknown
         <% } %>
-      </td>
-    </tr>
-    <% }); %>
-    </tbody>
-  </table>
+        </td>
+        <td><%= module.required %></td>
+        <td><%= module.latest %></td>
+        <td><%= module.version %></td>
+        <td>
+          <% if (!module.uptodate) { %>
+          Dependency is out of date
+          <% } else if (!module.pinned) { %>
+          Greedy version range
+          <% } else { %>
+          Up to date
+          <% } %>
+        </td>
+      </tr>
+      <% }); %>
+      </tbody>
+    </table>
+  </section>
 
   <ul class="row summary">
-    <li>
+    <li class="threecol dependencies">
       <%= Object.keys(package.dependencies || {}).length %> Dependencies
     </li>
-    <li>
+    <li class="threecol inherited">
       <%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %> Inherited dependencies
     </li>
-    <li>
+    <li class="threecol uptodate">
       <%= stats.uptodate %> up to date
     </li>
-    <li>
+    <li class="threecol outofdate last">
       <%= stats.outofdate %> out of date
     </li>
   </ul>
