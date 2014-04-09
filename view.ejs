@@ -6,7 +6,11 @@
     </h1>
 
     <div class="sixcol status last">
+      <% if (!stats.outofdate) { %>
       dependencies up to date
+      <% } else { %>
+      dependencies out of date
+      <% } %>
     </div>
     <p class="twelvecol">
       <%= package.description %>
@@ -21,10 +25,10 @@
       <%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %> Inherited dependencies
     </li>
     <li>
-      3 up to date
+      <%= stats.uptodate %> up to date
     </li>
     <li>
-      10 out of date
+      <%= stats.outofdate %> out of date
     </li>
   </ul>
 
@@ -63,10 +67,12 @@
       <td><%= module.latest %></td>
       <td><%= module.version %></td>
       <td>
-        <% if (module.uptodate) { %>
-        Up to date
-        <% } else { %>
+        <% if (!module.uptodate) { %>
         Dependency is out of date
+        <% } else if (!module.pinned) { %>
+        Greedy version range
+        <% } else { %>
+        Up to date
         <% } %>
       </td>
     </tr>
@@ -82,10 +88,10 @@
       <%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %> Inherited dependencies
     </li>
     <li>
-      3 up to date
+      <%= stats.uptodate %> up to date
     </li>
     <li>
-      10 out of date
+      <%= stats.outofdate %> out of date
     </li>
   </ul>
 </article>
