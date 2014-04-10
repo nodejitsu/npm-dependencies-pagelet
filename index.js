@@ -3,6 +3,8 @@
 var Pagelet = require('packages-pagelet');
 
 Pagelet.extend({
+  name: 'dependencies',   // Name of the pagelet -- Use this in placeholders.
+
   //
   // Specify the locations of our UI components.
   //

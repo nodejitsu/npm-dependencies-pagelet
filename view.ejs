@@ -28,7 +28,8 @@
       Dependencies
     </li>
     <li class="threecol inherited">
-      <strong><%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %></strong>
+      <% var inherited = shrinkwrap.length - Object.keys(package.dependencies || {}).length %>
+      <strong><%= inherited %></strong>
       Inherited dependencies
     </li>
     <li class="threecol uptodate boxed">
@@ -55,7 +56,8 @@
       </thead>
       <tbody>
       <% shrinkwrap.forEach(function (module) { %>
-      <tr class="<%= module.uptodate ? 'uptodate' : 'outofdate' %>">
+      <% var classNames = [module.uptodate ? (!module.pinned ? 'greedy' : 'uptodate') : 'outofdate']; if (module.depth !== 0) classNames.push('gone'); %>
+      <tr class="<%= classNames.join(' ') %>">
         <td class="name">
           <a href="/package/<%= module.name %>"><%= module.name %></a>
         </td>
@@ -78,15 +80,24 @@
         <td class="version"><%= module.version %></td>
         <td class="status">
           <% if (!module.uptodate) { %>
-          Dependency is out of date
+          Out of date
           <% } else if (!module.pinned) { %>
-          Greedy version range
+          Greedy semver
           <% } else { %>
           Up to date
           <% } %>
         </td>
       </tr>
       <% }); %>
+      <% if (inherited) { %>
+      <tfoot class="more">
+        <tr>
+          <td colspan="6">
+            <a href="#/more"><span>Show all (<%= inherited %>) dependencies</span></a>
+          </td>
+        </tr>
+      </tfoot>
+      <% }%>
       </tbody>
     </table>
   </section>
