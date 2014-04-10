@@ -1,33 +1,43 @@
 <article class="dependencies">
   <header class="row package">
     <h1 class="sixcol">
-      <%= package.name %> / <%= package.version %>
+      <a href="/package/<%= package.name %>"><%= package.name %></a> / <%= package.version %>
     </h1>
 
-    <div class="sixcol status last">
+    <div class="sixcol last">
       <% if (!stats.outofdate) { %>
-      dependencies up to date
+      <p class="status uptodate">
+        dependencies <span>up to date</span>
+      </p>
       <% } else { %>
-      dependencies out of date
+      <p class="status outofdate">
+        dependencies <span>out of date</span>
+      </p>
       <% } %>
+      </p>
     </div>
     <p class="twelvecol">
       <%= package.description %>
     </p>
   </header>
 
+  <% if (shrinkwrap.length) { %>
   <ul class="row summary">
     <li class="threecol dependencies">
-      <%= Object.keys(package.dependencies || {}).length %> Dependencies
+      <strong><%= Object.keys(package.dependencies || {}).length %></strong>
+      Dependencies
     </li>
     <li class="threecol inherited">
-      <%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %> Inherited dependencies
+      <strong><%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %></strong>
+      Inherited dependencies
     </li>
-    <li class="threecol uptodate">
-      <%= stats.uptodate %> up to date
+    <li class="threecol uptodate boxed">
+      <strong><%= stats.uptodate %></strong>
+      up to date
     </li>
-    <li class="threecol outofdate last">
-      <%= stats.outofdate %> out of date
+    <li class="threecol outofdate boxed last">
+      <strong><%= stats.outofdate %></strong>
+      out of date
     </li>
   </ul>
 
@@ -35,38 +45,38 @@
     <table class="details">
       <thead>
         <tr>
-          <th>Dependency</th>
-          <th>License</th>
-          <th>Required</th>
-          <th>Latest</th>
-          <th>Installed</th>
-          <th>status</th>
+          <th class="name">Dependency</th>
+          <th class="licenses">License</th>
+          <th class="version">Required</th>
+          <th class="version">Latest</th>
+          <th class="version">Installed</th>
+          <th class="status">status</th>
         </tr>
       </thead>
       <tbody>
       <% shrinkwrap.forEach(function (module) { %>
-      <tr>
-        <td>
+      <tr class="<%= module.uptodate ? 'uptodate' : 'outofdate' %>">
+        <td class="name">
           <a href="/package/<%= module.name %>"><%= module.name %></a>
         </td>
-        <td>
-        <% if (module.licenses) { %>
-          <%-
-            !(module.licenses || []).length ? 'Unknown' : module.licenses.map(function (license) {
-              var info = licenses(license);
-              return info && info.url
-                ? '<a href="'+ info.url +'" title="'+ info.full +'" target="_blank">'+ license +'</a>'
-                : license;
-            }).join(', ')
-          %>
-        <% } else { %>
-          Unknown
-        <% } %>
+        <td class="licenses">
+          <% if (module.licenses) { %>
+            <%-
+              !(module.licenses || []).length ? 'Unknown' : module.licenses.map(function (license) {
+                var info = licenses(license);
+                return info && info.url
+                  ? '<a href="'+ info.url +'" title="'+ info.full +'" target="_blank">'+ license +'</a>'
+                  : license;
+              }).join(', ')
+            %>
+          <% } else { %>
+          <strong>Unknown</strong>
+          <% } %>
         </td>
-        <td><%= module.required %></td>
-        <td><%= module.latest %></td>
-        <td><%= module.version %></td>
-        <td>
+        <td class="version"><%= module.required %></td>
+        <td class="version"><%= module.latest %></td>
+        <td class="version"><%= module.version %></td>
+        <td class="status">
           <% if (!module.uptodate) { %>
           Dependency is out of date
           <% } else if (!module.pinned) { %>
@@ -80,19 +90,9 @@
       </tbody>
     </table>
   </section>
-
-  <ul class="row summary">
-    <li class="threecol dependencies">
-      <%= Object.keys(package.dependencies || {}).length %> Dependencies
-    </li>
-    <li class="threecol inherited">
-      <%= shrinkwrap.length - Object.keys(package.dependencies || {}).length %> Inherited dependencies
-    </li>
-    <li class="threecol uptodate">
-      <%= stats.uptodate %> up to date
-    </li>
-    <li class="threecol outofdate last">
-      <%= stats.outofdate %> out of date
-    </li>
-  </ul>
+  <% } else { %>
+  <section class="row">
+    <h2>No dependencies</h2>
+  </section>
+  <% } %>
 </article>

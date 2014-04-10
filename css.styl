@@ -1,0 +1,100 @@
+$light-highlight = #f4f4f4
+$med-highlight =  #2980b9
+$dark-highlight = #2980b9
+
+$uptodate =  #2ecc71
+$uptodate-border = #28b362
+
+$outofdate = #e74c3c
+$outofdate-border = #c0392b
+
+.package
+  overflow: hidden
+
+  h1
+    color: $dark-highlight
+    margin: 15px 0 0 0
+
+  .status
+    border-radius: 3px
+    float: right
+    overflow: hidden
+    padding-left: 10px
+
+    span
+      color: #FFF
+      font-weight: bold
+      padding: 3px 10px
+
+  .uptodate
+    border: 1px solid $uptodate-border
+
+    span
+      background: $uptodate
+
+  .outofdate
+    border: 1px solid $outofdate-border
+
+    span
+      background: $outofdate
+
+.summary
+  li
+    list-style: none
+    margin: 20px 0
+
+  .boxed
+    position: relative
+
+    &:before
+      border-radius: 3px
+      content: ''
+      display: block
+      height: 12px
+      left: -20px
+      position: absolute
+      top: 2px
+      width: 12px
+
+  .uptodate:before
+    background: $uptodate
+    border: 1px solid $uptodate-border
+
+  .outofdate:before
+    background: $outofdate
+    border: 1px solid $outofdate-border
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+  border: 0
+  margin: 15px 0
+  width: 100%
+
+  .name
+    width: 30%
+  .license
+    width: 20%
+  .status
+    width: 20%
+  .version
+    width: 10%
+
+  thead
+    border-bottom: 1px solid #eaeaea
+
+  th
+    font-weight: normal
+
+  td,
+  th
+    padding: 6px 13px
+    text-align: left
+    border: 0
+
+    &.version
+      text-align: right
+
+  tr.outofdate
+    font-weight: bold
+    color: $outofdate
