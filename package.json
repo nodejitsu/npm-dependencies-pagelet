@@ -1,11 +1,8 @@
 {
   "name": "npm-dependencies-pagelet",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Pagelet for displaying the dependencies for a given module",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/nodejitsu/npm-dependencies-pagelet.git"
