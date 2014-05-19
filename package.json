@@ -1,6 +1,6 @@
 {
   "name": "npm-dependencies-pagelet",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Pagelet for displaying the dependencies for a given module",
   "main": "index.js",
   "repository": {
