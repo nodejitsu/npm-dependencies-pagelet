@@ -1,4 +1,4 @@
-pipe.once('dependencies::initialise', function init(pagelet) {
+pipe.once('dependencies:initialize', function init(pagelet) {
   'use strict';
 
   //
