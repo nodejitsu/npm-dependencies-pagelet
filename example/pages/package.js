@@ -1,7 +1,6 @@
 'use strict';
 
-var Filecache = require('../filecache')
-  , Page = require('bigpipe').Page
+var Page = require('bigpipe').Page
   , GitHulk = require('githulk');
 
 Page.extend({
@@ -9,7 +8,6 @@ Page.extend({
   view: './package.ejs',    // The base template we need to render.
   pagelets: {               // The pagelets that should be rendered.
     package: require('packages-pagelet').extend({
-      cache: new Filecache(),
       githulk: new GitHulk()
     })
   }
