@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/nodejitsu/npm-dependencies-pagelet",
   "dependencies": {
-    "packages-pagelet": "0.5.x",
+    "packages-pagelet": "0.6.x",
     "ejs": "1.0.x"
   }
 }
