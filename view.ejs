@@ -56,7 +56,7 @@
       </thead>
       <tbody>
       <% shrinkwrap.forEach(function (module) { %>
-      <% var classNames = [module.uptodate ? (!module.pinned ? 'greedy' : 'uptodate') : 'outofdate']; if (module.depth !== 0) classNames.push('gone'); %>
+      <% var classNames = [module.uptodate ? !module.pinned ? 'greedy' : 'uptodate' : 'outofdate', module.depth !== 0 ? 'gone' : 'main']; %>
       <tr class="<%= classNames.join(' ') %>">
         <td class="name">
           <a href="/package/<%= module.name %>"><%= module.name %></a>
