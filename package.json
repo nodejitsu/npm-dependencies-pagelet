@@ -1,6 +1,6 @@
 {
   "name": "npm-dependencies-pagelet",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Pagelet for displaying the dependencies for a given module",
   "main": "index.js",
   "repository": {
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/nodejitsu/npm-dependencies-pagelet",
   "dependencies": {
-    "packages-pagelet": "0.7.x",
+    "packages-pagelet": "0.8.x",
     "ejs": "1.0.x"
   }
 }

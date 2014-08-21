@@ -38,5 +38,11 @@ Pagelet.extend({
     });
 
     return data;
-  }
+  },
+
+  //
+  // The packages-pagelet uses sub-pagelets to render things on the page. These
+  // elements are not required for these page so we need to remove them.
+  //
+  pagelets: {}
 }).on(module);
