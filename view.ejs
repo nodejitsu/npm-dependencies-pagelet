@@ -56,7 +56,7 @@
       </thead>
       <tbody>
       <% shrinkwrap.forEach(function (module) { %>
-      <% var classNames = [module.uptodate ? !module.pinned ? 'greedy' : 'uptodate' : 'outofdate', module.depth !== 0 ? 'gone' : 'main']; %>
+      <% var classNames = [module.uptodate ? !module.pinned ? 'greedy' : 'uptodate' : 'outofdate', 'main']; %>
       <tr class="<%= classNames.join(' ') %>">
         <td class="name">
           <a href="/package/<%= module.name %>"><%= module.name %></a>
@@ -89,15 +89,6 @@
         </td>
       </tr>
       <% }); %>
-      <% if (inherited) { %>
-      <tfoot class="more">
-        <tr>
-          <td colspan="6">
-            <a href="#/more"><span>Show all (<%= inherited %>) dependencies</span></a>
-          </td>
-        </tr>
-      </tfoot>
-      <% }%>
       </tbody>
     </table>
   </section>

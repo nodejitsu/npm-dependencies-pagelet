@@ -10,7 +10,7 @@ Pagelet.extend({
   //
   view: 'view.ejs',       // The template that gets rendered.
   css:  'css.styl',       // All CSS required to render this component.
-  js:   'client.js',      // Progressive enhancements for the UI.
+  js:   '',               // Remove JS dependency.
 
   /**
    * Final post processing step on the data.
